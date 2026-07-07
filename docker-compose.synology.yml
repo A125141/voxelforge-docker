@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  voxelforge:
+    image: voxelforge:latest
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: voxelforge
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - JWT_SECRET=${JWT_SECRET:-please_change_this_secret_in_production}
+      - DATA_PATH=/app/data
+      - PGID=${PGID:-1000}
+      - PUID=${PUID:-1000}
+    volumes:
+      - ./voxelforge-data:/app/data
+    user: "${PUID:-1000}:${PGID:-1000}"
