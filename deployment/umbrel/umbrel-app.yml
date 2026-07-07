@@ -1,0 +1,39 @@
+manifestVersion: 1
+id: voxelforge
+category: Games
+name: VoxelForge
+version: "1.0.0"
+tagline: "A browser-based Minecraft clone for your home server"
+description: >-
+  VoxelForge is a self-hosted voxel sandbox game that runs entirely in your browser.
+  Create infinite worlds, mine blocks, build structures, and play with friends on
+  your local network. Featuring greedy meshing for 60fps performance, JWT auth,
+  per-user worlds, and persistent chunk storage.
+developer: VoxelForge Contributors
+website: https://github.com/voxelforge/voxelforge
+submitter: voxelforge
+submission: https://github.com/voxelforge/voxelforge
+repo: https://github.com/voxelforge/voxelforge
+support: https://github.com/voxelforge/voxelforge/issues
+gallery:
+  - https://raw.githubusercontent.com/voxelforge/voxelforge/main/docs/gallery/1.png
+  - https://raw.githubusercontent.com/voxelforge/voxelforge/main/docs/gallery/2.png
+releaseNotes: >-
+  Initial release with Creative and Survival modes, LAN multiplayer, and
+  persistent worlds.
+dependencies: []
+path: ""
+defaultUsername: ""
+defaultPassword: ""
+port: 3000
+host: "0.0.0.0"
+tor: true
+containers:
+  - image: ghcr.io/voxelforge/voxelforge:latest
+    ports: ["3000:3000"]
+    volumes:
+      - "${APP_DATA_DIR}/data:/app/data"
+    environment:
+      - NODE_ENV=production
+      - JWT_SECRET=${JWT_SECRET}
+      - DATA_PATH=/app/data
