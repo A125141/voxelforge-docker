@@ -1,0 +1,26 @@
+{
+  "id": "voxelforge",
+  "port": 3000,
+  "scheme": "http",
+  "title": "VoxelForge",
+  "description": "A browser-based Minecraft clone. Build, mine, and explore infinite voxel worlds from any device on your network.",
+  "icon": "https://raw.githubusercontent.com/voxelforge/voxelforge/main/deployment/casaos/icon.svg",
+  "category": "Games",
+  "tip_version": "1.0.0",
+  "developer": "VoxelForge Contributors",
+  "website": "https://github.com/voxelforge/voxelforge",
+  "support": "https://github.com/voxelforge/voxelforge/issues",
+  "container": {
+    "image": "ghcr.io/voxelforge/voxelforge:latest",
+    "ports": { "3000": 3000 },
+    "volumes": [
+      { "host": "/DATA/AppData/voxelforge", "container": "/app/data" }
+    ],
+    "env": [
+      { "name": "NODE_ENV", "value": "production" },
+      { "name": "JWT_SECRET", "value": "change_me_please" },
+      { "name": "DATA_PATH", "value": "/app/data" }
+    ],
+    "restart_policy": "unless-stopped"
+  }
+}
